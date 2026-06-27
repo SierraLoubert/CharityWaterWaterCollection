@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Water Collection Game</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="game-wrapper">
+        <div class="score-panel">
+            <img src="img/cw_logo-horizontal.png" alt="charity: water logo" class="header-logo">
+            <div class="score-group">
+                <div class="score">Score: <span id="score">0</span></div>
+                <div class="timer">Time: <span id="time">30</span>s</div>
+            </div>
+        </div>
+
+<div id="game-container">
+    <div id="start-overlay">
+         <img src="img/cw_logo.png" alt="charity: water logo" class="logo">
+        <h1>Welcome To Water Collection</h1>
+        <h2 id="overlay-message">
+            Collect clean water drops and avoid pollution.
+            Reach 100 points before time runs out!
+        </h2>
+
+        <button id="start-btn">Start Game</button>
+        <button id="play-again-btn">Play Again</button>
+    </div>
+
+    <button id="reset-btn">Reset</button>
+</div>
+
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.9.2/dist/confetti.browser.min.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>
