@@ -7,6 +7,11 @@ let timer = 120;
 
 let timerInterval;
 
+//new//
+let dropSpeed = 800;
+let badDropChance = 0.25;
+let startingTime = 120;
+
 // Start button begins a new round.
 document.getElementById("start-btn").addEventListener("click", () => {
   if (gameRunning) return;
@@ -33,38 +38,41 @@ document.getElementById("reset-btn").addEventListener("click", () => {
 
 function startGame() {
 
-    if (gameRunning) return;
+    const difficulty =
+  document.getElementById("difficulty").value;
 
-    document.getElementById("start-overlay").style.display = "none";
+if (difficulty === "easy") {
 
-    gameRunning = true;
+  startingTime = 150;
+  dropSpeed = 1000;
+  badDropChance = 0.15;
 
-    score = 0;
-    timer = 120;
+} else if (difficulty === "hard") {
 
-    document.getElementById("score").textContent = score;
-    document.getElementById("time").textContent = timer;
+  startingTime = 60;
+  dropSpeed = 600;
+  badDropChance = 0.40;
 
-    dropMaker = setInterval(createDrop, 800);
+} else {
 
-    timerInterval = setInterval(() => {
+  startingTime = 120;
+  dropSpeed = 800;
+  badDropChance = 0.25;
 
-        timer--;
+}
 
-        document.getElementById("time").textContent = timer;
+timer = startingTime;
 
-        if (timer <= 0) {
-            endGame();
-        }
+dropMaker = setInterval(createDrop, dropSpeed);
 
-    }, 1000);
 }
 
 function createDrop() {
 
   const drop = document.createElement("div");
 
-  const isBadDrop = Math.random() < 0.25;
+  const isBadDrop =
+  Math.random() < badDropChance;
 
   drop.className = isBadDrop
     ? "water-drop bad-drop"
@@ -109,6 +117,10 @@ function createDrop() {
     drop.remove();
 
   });
+//add//
+  document.getElementById("score").textContent = score;
+  checkMilestones();
+  drop.remove(); 
 
   document.getElementById("game-container")
     .appendChild(drop);
@@ -225,3 +237,42 @@ function clearExistingDrops() {
   drops.forEach((drop) => drop.remove());
 
 }
+
+//Milestone Function
+
+function checkMilestones() {
+
+  milestones.forEach((milestone) => {
+
+    if (score === milestone.score) {
+
+      document.getElementById(
+        "milestone-message"
+      ).textContent = milestone.message;
+
+    }
+
+  });
+
+}
+
+const milestones = [
+  {
+    score: 25,
+    message: "You helped provide clean water for a family!"
+  },
+  {
+    score: 50,
+    message: "You are helping an entire community!"
+  },
+  {
+    score: 75,
+    message: "More children can attend school!"
+  }
+];
+
+<select id="difficulty">
+    <option value="easy">Easy</option>
+    <option value="normal" selected>Normal</option>
+    <option value="hard">Hard</option>
+</select>
