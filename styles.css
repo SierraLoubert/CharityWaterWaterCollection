@@ -255,6 +255,7 @@ body {
     height: auto;
 }
 
+
 @media (max-width: 850px) {
     .game-wrapper, .score-panel, #game-container {
         width: 95vw;
@@ -303,6 +304,10 @@ body {
     #game-container {
         height: 70vh;
     }
+
+    #charity-footer {
+    width: 95vw;
+}
 }
 
 @media (max-width: 480px) {
@@ -358,4 +363,10 @@ body {
     #game-container {
         height: 62vh;
     }
+
+    #charity-footer {
+    width: 62vw;
 }
+    
+}
+

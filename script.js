@@ -292,3 +292,12 @@ const milestones = [
     message: "More children can attend school!"
   }
 ];
+
+//addEventListener
+document.getElementById("learn-link").addEventListener("click", () => {
+    console.log("User opened charity: water website.");
+});
+
+document.getElementById("donate-link").addEventListener("click", () => {
+    console.log("User opened donation page.");
+});
