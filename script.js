@@ -38,8 +38,15 @@ document.getElementById("reset-btn").addEventListener("click", () => {
 
 function startGame() {
 
-    const difficulty =
-  document.getElementById("difficulty").value;
+  if (gameRunning) return;
+
+  gameRunning = true;
+
+  // Hide the start overlay while the game is running.
+  document.getElementById("start-overlay").style.display = "none";
+
+  const difficultySelect = document.getElementById("difficulty");
+  const difficulty = difficultySelect ? difficultySelect.value : "normal";
 
 if (difficulty === "easy") {
 
@@ -63,7 +70,25 @@ if (difficulty === "easy") {
 
 timer = startingTime;
 
+document.getElementById("score").textContent = score;
+document.getElementById("time").textContent = timer;
+
+clearInterval(dropMaker);
+clearInterval(timerInterval);
+
 dropMaker = setInterval(createDrop, dropSpeed);
+
+// Drop one immediately so the game feels responsive on click.
+createDrop();
+
+timerInterval = setInterval(() => {
+  timer -= 1;
+  document.getElementById("time").textContent = timer;
+
+  if (timer <= 0) {
+    endGame();
+  }
+}, 1000);
 
 }
 
@@ -113,14 +138,11 @@ function createDrop() {
     }
 
     document.getElementById("score").textContent = score;
+    checkMilestones();
 
     drop.remove();
 
   });
-//add//
-  document.getElementById("score").textContent = score;
-  checkMilestones();
-  drop.remove(); 
 
   document.getElementById("game-container")
     .appendChild(drop);
@@ -270,9 +292,3 @@ const milestones = [
     message: "More children can attend school!"
   }
 ];
-
-<select id="difficulty">
-    <option value="easy">Easy</option>
-    <option value="normal" selected>Normal</option>
-    <option value="hard">Hard</option>
-</select>
