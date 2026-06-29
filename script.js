@@ -14,6 +14,8 @@ let startingTime = 120;
 
 // Start button begins a new round.
 document.getElementById("start-btn").addEventListener("click", () => {
+   clickSound.play();
+   
   if (gameRunning) return;
 
   startGame();
@@ -25,6 +27,8 @@ document.getElementById("play-again-btn").addEventListener("click", () => {
 });
 
 document.getElementById("reset-btn").addEventListener("click", () => {
+  collectSound.play();
+
   resetGame();
 
   document.getElementById("start-overlay").style.display = "flex";
@@ -119,11 +123,17 @@ function createDrop() {
 
       score -= 3;
 
+      badSound.currentTime = 0;
+      badSound.play();
+
       if (score < 0) score = 0;
 
     } else {
 
       score += 5;
+
+      collectSound.currentTime = 0;
+      collectSound.play();
 
       if (score >= 100) {
 
@@ -224,6 +234,9 @@ function winGame() {
   confetti({
     particleCount: 150,
     spread: 90
+
+    winSound.play();
+
   });
 
   document.getElementById("start-overlay").style.display = "flex";
@@ -301,3 +314,9 @@ document.getElementById("learn-link").addEventListener("click", () => {
 document.getElementById("donate-link").addEventListener("click", () => {
     console.log("User opened donation page.");
 });
+
+//Needs Sound get sound
+const collectSound = new Audio("sounds/collect.mp3");
+const badSound = new Audio("sounds/bad.mp3");
+const winSound = new Audio("sounds/win.mp3");
+const clickSound = new Audio("sounds/click.mp3");
