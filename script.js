@@ -1,7 +1,7 @@
-const collectSound = new Audio("sounds/collect.mp3");
-const badSound = new Audio("sounds/bad.mp3");
-const winSound = new Audio("sounds/win.mp3");
-const clickSound = new Audio("sounds/click.mp3");
+const collectSound = new Audio("sound/collect.mp3");
+const badSound = new Audio("sound/bad.mp3");
+const winSound = new Audio("sound/win.mp3");
+const clickSound = new Audio("sound/click.mp3");
 
 // Variables to control game state
 let gameRunning = false; // Keeps track of whether game is active or not
@@ -238,11 +238,11 @@ function winGame() {
 
   confetti({
     particleCount: 150,
-    spread: 90
-
-    winSound.play();
-
+    spread: 90,
   });
+
+  winSound.currentTime = 0;
+  winSound.play();
 
   document.getElementById("start-overlay").style.display = "flex";
   document.getElementById("overlay-message").textContent =
