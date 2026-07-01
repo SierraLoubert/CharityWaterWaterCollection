@@ -1,3 +1,8 @@
+const collectSound = new Audio("sounds/collect.mp3");
+const badSound = new Audio("sounds/bad.mp3");
+const winSound = new Audio("sounds/win.mp3");
+const clickSound = new Audio("sounds/click.mp3");
+
 // Variables to control game state
 let gameRunning = false; // Keeps track of whether game is active or not
 let dropMaker; // Will store our timer that creates drops regularly
@@ -314,9 +319,3 @@ document.getElementById("learn-link").addEventListener("click", () => {
 document.getElementById("donate-link").addEventListener("click", () => {
     console.log("User opened donation page.");
 });
-
-//Needs Sound get sound
-const collectSound = new Audio("sounds/collect.mp3");
-const badSound = new Audio("sounds/bad.mp3");
-const winSound = new Audio("sounds/win.mp3");
-const clickSound = new Audio("sounds/click.mp3");
